@@ -9,26 +9,29 @@ namespace WEBAPI.controllers
     [Route("[controller]")]
     public class GoblinController : ControllerBase
     {
-        private static List<Goblin> goblins = new List<Goblin>
+        private static List<Post> posts = new List<Post>
         {
-            new Goblin(),
-            new Goblin {Name = "Ga'baol", Job = GoblinJob.Banker, Id = 1}
+            new Post(),
+            new Post {Id = 1, Date = 21032022, Title = "I HATE goblin grease", Bodytext = "Goblin grease sucks big time!!1! and only those 1%er goblins wear them, they're trying to control you fellow goblins dont follow their propaganda and watch out for glowgobs!!!" }
         };
+        [HttpGet]
+        public ActionResult<List<Post>> Get()
+        {
+            return Ok(posts);
+        }
+
         [HttpGet("{id}")]   
-        public ActionResult<Goblin> GetSingle(int id)
+        public ActionResult<Post> GetSingle(int id)
         {
-            return Ok(goblins.FirstOrDefault(g => g.Id == id));
+            return Ok(posts.FirstOrDefault(g => g.Id == id));
         }
+
         [HttpPost]
-        public ActionResult<List<Goblin>> AddGoblin(Goblin newGoblin)
+        public ActionResult<List<Post>> AddPost(Post newPost)
         {
-            goblins.Add(newGoblin);
-            return Ok(goblins);
-        }
-        [HttpPost]
-        public ActionResult<Post>
-        {
-            return Ok(Post);
+            posts.Add(newPost);
+            return Ok(posts);
+            
         }
     }
 }
