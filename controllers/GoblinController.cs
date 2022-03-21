@@ -25,5 +25,10 @@ namespace WEBAPI.controllers
             goblins.Add(newGoblin);
             return Ok(goblins);
         }
+        [HttpPost]
+        public ActionResult<Post>
+        {
+            return Ok(Post);
+        }
     }
 }
