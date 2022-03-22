@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WEBAPI.models;
+using WEBAPI.Services.PostServices;
 
 namespace WEBAPI.controllers
 {
@@ -9,11 +10,11 @@ namespace WEBAPI.controllers
     [Route("[controller]")]
     public class GoblinController : ControllerBase
     {
-        private static List<Post> posts = new List<Post>
+        private readonly IPostService _postService;
+        public GoblinController(IPostService _postService)
         {
-            new Post(),
-            new Post {Id = 1, Date = 21032022, Title = "I HATE goblin grease", Bodytext = "Goblin grease sucks big time!!1! and only those 1%er goblins wear them, they're trying to control you fellow goblins dont follow their propaganda and watch out for glowgobs!!!" }
-        };
+            _postService = postService;
+        }
         [HttpGet]
         public ActionResult<List<Post>> Get()
         {
