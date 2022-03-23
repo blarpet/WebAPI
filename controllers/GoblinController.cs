@@ -11,28 +11,29 @@ namespace WEBAPI.controllers
     public class GoblinController : ControllerBase
     {
         private readonly IPostService _postService;
-        public GoblinController(IPostService _postService)
+        public GoblinController(IPostService postService)
         {
             _postService = postService;
         }
         [HttpGet]
-        public ActionResult<List<Post>> Get()
+        public ActionResult<List<Post>> GetPost()
         {
-            return Ok(posts);
+            return Ok(_postService.GetPostList());
         }
-
-        [HttpGet("{id}")]   
-        public ActionResult<Post> GetSingle(int id)
-        {
-            return Ok(posts.FirstOrDefault(g => g.Id == id));
-        }
-
         [HttpPost]
         public ActionResult<List<Post>> AddPost(Post newPost)
         {
-            posts.Add(newPost);
-            return Ok(posts);
-            
+            return Ok(_postService.AddPost(newPost));
+        }
+        [HttpDelete]
+        public ActionResult<List<Post>> DeletePost(int id)
+        {
+            return Ok(_postService.DeletePost(id));
+        }
+        [HttpPut]
+        public ActionResult<List<Post>> UpdatePost(Post UpdatePost)
+        {
+            return Ok(_postService.UpdatePost(UpdatePost));
         }
     }
 }

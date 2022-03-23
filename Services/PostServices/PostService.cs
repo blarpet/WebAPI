@@ -4,7 +4,7 @@ using WEBAPI.models;
 
 namespace WEBAPI.Services.PostServices
 {
-    public class PostService
+    public class PostService : IPostService
     {
         private static List<Post> postList = new List<Post>()
         {
@@ -27,6 +27,9 @@ namespace WEBAPI.Services.PostServices
             postList.Remove(foundPost);
             return postList;
         }
+
+       
+
         public List<Post> UpdatePost (Post updatePost)
         {
             var foundPost = postList.FirstOrDefault(post => post.Id == updatePost.Id);

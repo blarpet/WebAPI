@@ -8,6 +8,6 @@ namespace WEBAPI.Services.PostServices
         List<Post> GetPostList();
         List<Post> AddPost(Post newPost);
         List<Post> DeletePost(int id);
-        List<Post> UpdatePost(Post updatePost);
+         List<Post> UpdatePost(Post updatePost);
     }
 }
