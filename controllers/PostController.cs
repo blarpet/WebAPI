@@ -8,10 +8,10 @@ namespace WEBAPI.controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GoblinController : ControllerBase
+    public class PostController : ControllerBase
     {
         private readonly IPostService _postService;
-        public GoblinController(IPostService postService)
+        public PostController(IPostService postService)
         {
             _postService = postService;
         }
