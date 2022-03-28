@@ -48,7 +48,7 @@ namespace WEBAPI.Services.PostServices
                 foundPost.Date = updatePost.Date;
             }
             _context.SaveChanges();
-            return postList;
+            return _context.posts.ToList();
         }
 
     }
