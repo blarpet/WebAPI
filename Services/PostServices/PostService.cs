@@ -18,7 +18,7 @@ namespace WEBAPI.Services.PostServices
         {
             _context = context;
         }
-
+    
         public List<Post> GetPostList()
         {
             return _context.posts.ToList();

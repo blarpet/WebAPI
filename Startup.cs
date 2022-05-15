@@ -37,6 +37,21 @@ namespace WEBAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WEBAPI", Version = "v1" });
             });
              services.AddScoped<IPostService, PostService>();
+
+             var provider = services.BuildServiceProvider();
+             var configuration = provider.GetRequiredService<IConfiguration>();
+
+             services.AddCors(options =>
+             {
+                 var frontendURL = configuration.GetValue<string>("frontend_url");
+
+                 options.AddDefaultPolicy(builder =>
+                 {
+                     builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                 });
+             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +65,8 @@ namespace WEBAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 
